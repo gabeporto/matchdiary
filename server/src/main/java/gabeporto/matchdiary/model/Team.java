@@ -1,6 +1,7 @@
 package gabeporto.matchdiary.model;
 
 
+import gabeporto.matchdiary.dto.team.TeamRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +23,11 @@ public class Team {
     private String state;
     @Column(name = "photo_url")
     private String photoUrl;
+    
+    public Team(TeamRequestDTO teamRequestDTO) {
+        this.id = teamRequestDTO.getId();
+        this.name = teamRequestDTO.getName();
+        this.state = teamRequestDTO.getState();
+        this.photoUrl = teamRequestDTO.getPhotoUrl();
+    }
 }
