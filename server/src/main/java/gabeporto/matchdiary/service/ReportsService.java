@@ -2,7 +2,9 @@ package gabeporto.matchdiary.service;
 
 import gabeporto.matchdiary.dto.reports.ReportsResponseDTO;
 import gabeporto.matchdiary.model.Match;
+import gabeporto.matchdiary.model.Team;
 import gabeporto.matchdiary.repository.MatchRepository;
+import gabeporto.matchdiary.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,15 @@ public class ReportsService {
     @Autowired
     private MatchRepository matchRepository;
 
+    @Autowired
+    private TeamRepository teamRepository;
+
     public ReportsResponseDTO getAllReports() {
         Integer matchesQuantity = getMatchesQuantity();
         Integer winsQuantity = getWinsQuantity();
         Double winPercentage = getWinPercentage();
-        return new ReportsResponseDTO(matchesQuantity, winsQuantity, winPercentage);
+        Team mostWatchedTeam = getMostWatchedTeam();
+        return new ReportsResponseDTO(matchesQuantity, winsQuantity, winPercentage, mostWatchedTeam);
     }
 
     private Integer getMatchesQuantity() {
@@ -84,5 +90,9 @@ public class ReportsService {
         winPercentage = (wonPoints / totalPoints) * 100;
 
         return winPercentage;
+    }
+
+    public Team getMostWatchedTeam() {
+        return teamRepository.findMostWatchedTeam();
     }
 }
