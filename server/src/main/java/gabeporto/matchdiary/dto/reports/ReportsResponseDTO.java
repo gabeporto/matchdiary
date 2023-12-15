@@ -14,7 +14,7 @@ public class ReportsResponseDTO {
 
     private Integer matchesQuantity;
     private Integer winsQuantity;
-    private Double winPercentage;
+    private Integer winPercentage;
     private Team mostWatchedTeam;
     private Integer daysWithoutWatching;
 }
