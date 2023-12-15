@@ -1,6 +1,5 @@
 package gabeporto.matchdiary.dto.match;
 
-import gabeporto.matchdiary.model.Team;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ public class MatchRequestDTO {
     private Date date;
     private Integer scoreTeamOne;
     private Integer scoreTeamTwo;
-    private Long teamOne;
-    private Long teamTwo;
-    private Long supportedTeam;
+    private Long teamOneId;
+    private Long teamTwoId;
+    private Long supportedTeamId;
 }

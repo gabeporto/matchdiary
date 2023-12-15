@@ -1,6 +1,7 @@
 package gabeporto.matchdiary.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import gabeporto.matchdiary.dto.match.MatchRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,4 +41,14 @@ public class Match {
     @JsonManagedReference
     @JoinColumn(name = "team_supported_id")
     private Team supportedTeam;
+
+    public Match(MatchRequestDTO matchRequestDTO, Team teamOne, Team teamTwo, Team supportedTeam) {
+        this.id = matchRequestDTO.getId();
+        this.date = matchRequestDTO.getDate();
+        this.scoreTeamOne = matchRequestDTO.getScoreTeamOne();
+        this.scoreTeamTwo = matchRequestDTO.getScoreTeamTwo();
+        this.teamOne = teamOne;
+        this.teamTwo = teamTwo;
+        this.supportedTeam = supportedTeam;
+    }
 }
