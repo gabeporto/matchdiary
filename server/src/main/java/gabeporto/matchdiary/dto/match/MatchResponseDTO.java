@@ -25,6 +25,6 @@ public class MatchResponseDTO {
 
     public MatchResponseDTO(Match match) {
         this(match.getId(), match.getDate(), match.getScoreTeamOne(),
-            match.getScoreTeamOne(), match.getTeamOne(), match.getTeamTwo(), match.getSupportedTeam());
+            match.getScoreTeamTwo(), match.getTeamOne(), match.getTeamTwo(), match.getSupportedTeam());
     }
 }

@@ -9,6 +9,7 @@ import gabeporto.matchdiary.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,11 +34,10 @@ public class MatchService {
     }
 
     public List<Match> getAllMatches() {
-        return matchRepository.findAll();
+        return matchRepository.findAllOrderedById();
     }
 
     public Match registerMatch(final MatchRequestDTO matchRequestDTO) {
-
         if(matchRequestDTO.getScoreTeamOne().toString().isEmpty() ||
                 matchRequestDTO.getScoreTeamTwo().toString().isEmpty() ||
                 matchRequestDTO.getSupportedTeamId().toString().isEmpty() ||
@@ -50,6 +50,13 @@ public class MatchService {
         if(matchRequestDTO.getTeamOneId().equals(matchRequestDTO.getTeamTwoId())) {
             return null;
         }
+
+        Date formattedDate = matchRequestDTO.getDate();
+        formattedDate.setHours(0);
+        formattedDate.setMinutes(0);
+        formattedDate.setSeconds(0);
+
+        matchRequestDTO.setDate(formattedDate);
 
         Team teamOne = teamRepository.findById(matchRequestDTO.getTeamOneId()).orElseThrow(() -> new IllegalArgumentException("Time 1 não encontrado"));
         Team teamTwo = teamRepository.findById(matchRequestDTO.getTeamTwoId()).orElseThrow(() -> new IllegalArgumentException("Time 2 não encontrado"));
@@ -60,7 +67,6 @@ public class MatchService {
     }
 
     public Match updateMatch(final MatchRequestDTO matchRequestDTO) {
-
         if(matchRequestDTO.getScoreTeamOne().toString().isEmpty() ||
                 matchRequestDTO.getScoreTeamTwo().toString().isEmpty() ||
                 matchRequestDTO.getSupportedTeamId().toString().isEmpty() ||
@@ -73,6 +79,13 @@ public class MatchService {
         if(matchRequestDTO.getTeamOneId().equals(matchRequestDTO.getTeamTwoId())) {
             return null;
         }
+
+        Date formattedDate = matchRequestDTO.getDate();
+        formattedDate.setHours(0);
+        formattedDate.setMinutes(0);
+        formattedDate.setSeconds(0);
+
+        matchRequestDTO.setDate(formattedDate);
 
         Team teamOne = teamRepository.findById(matchRequestDTO.getTeamOneId()).orElseThrow(() -> new IllegalArgumentException("Time 1 não encontrado"));
         Team teamTwo = teamRepository.findById(matchRequestDTO.getTeamTwoId()).orElseThrow(() -> new IllegalArgumentException("Time 2 não encontrado"));
