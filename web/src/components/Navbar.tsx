@@ -5,7 +5,7 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import SportsIcon from '@mui/icons-material/Sports';
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +100,6 @@ const TitleDiv = styled(Link)`
     text-decoration: none;
     color: white;
 `
-
 const Navbar: React.FC = () => {
 
     const [isMenuOpen, setMenuOpen] = useState(false);
