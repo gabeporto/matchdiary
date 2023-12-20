@@ -22,7 +22,6 @@ export default function TeamListPage() {
         fetchData();
     }, []);
 
-
     return (
         <>
             <Navbar />
