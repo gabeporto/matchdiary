@@ -121,7 +121,7 @@ export default function AddMatchPage() {
                         </MatchInfoContainer>
 
                         <InputSelect label="Sua torcida" options={teamOneAndTwoOptions} value={supportedTeamId} onChange={(e) => setSupportedTeam(Number(e.target.value))}/>
-                        <Button type="submit" name="Registrar" />
+                        <Button type="submit" name="Adicionar" />
                     </MatchContainer>
                 </form>
             </Container>

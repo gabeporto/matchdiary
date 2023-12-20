@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import { MatchData } from "../interfaces/MatchData"
 import { format } from 'date-fns'
 import api from "../services/api"
+import { useNavigate } from "react-router-dom"
 
 
 const TableStyled = styled.table`
@@ -51,6 +52,14 @@ interface MatchTableProps {
 
 
 export default function MatchTable(props : MatchTableProps) {
+    
+    const navigate = useNavigate();
+
+    const handleEditMatch = async (e: React.FormEvent, matchId: number) => {
+        e.preventDefault();
+
+        navigate(`/match/edit/${matchId}`)
+    };
 
     const handleDeleteMatch = async (e: React.FormEvent, matchId: number) => {
         e.preventDefault();
@@ -92,7 +101,7 @@ export default function MatchTable(props : MatchTableProps) {
                         </TdStyled>
                         <TdStyled>{format(new Date(match.date), 'dd/MM/yyyy')}</TdStyled>
                         <TdStyled>
-                            <IconButton>
+                            <IconButton onClick={(e: React.FormEvent) => handleEditMatch(e, match.id!)}>
                                 <EditIcon />
                             </IconButton>
                             <IconButton onClick={(e: React.FormEvent) => handleDeleteMatch(e, match.id!)}>

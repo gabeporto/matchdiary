@@ -62,7 +62,7 @@ export default function EditTeamPage() {
                     <Input value={state} label="Estado do time" onChange={(e) => setState(e.target.value)}/>
                     <Input value={photoUrl} label="Foto do time (Url)" onChange={(e) => setPhotoUrl(e.target.value)}/>
 
-                    <Button type="submit" name="Adicionar"/>
+                    <Button type="submit" name="Editar"/>
                 </form>
             </Container>
         </>
