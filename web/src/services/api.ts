@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { ReportsData } from "../interfaces/ReportsData";
 import { TeamData } from "../interfaces/TeamData";
 import { MatchData } from "../interfaces/MatchData";
+import { MatchRequestData } from "../interfaces/MatchRequestData";
 
 interface Api {
     getReportsData: () => Promise<AxiosResponse<ReportsData>>;
@@ -14,8 +15,8 @@ interface Api {
 
     getMatchData: () => Promise<AxiosResponse<MatchData[]>>;
     getMatchDataById: (id: number) => Promise<AxiosResponse<MatchData>>;
-    addMatch: (teamData : TeamData) => Promise<AxiosResponse<any>>;
-    editMatch: (teamData : TeamData) => Promise<AxiosResponse<any>>;
+    addMatch: (matchData : MatchRequestData) => Promise<AxiosResponse<any>>;
+    editMatch: (matchData : MatchRequestData) => Promise<AxiosResponse<any>>;
     deleteMatch: (id: number) => Promise<AxiosResponse<any>>;
 }
 
@@ -38,8 +39,8 @@ const api: Api = {
 
     getMatchData: () => instance.get('/match/all'),
     getMatchDataById: (id: number) => instance.get(`/match/${id}`),
-    addMatch: (teamData : TeamData) => instance.post('/match', teamData),
-    editMatch: (teamData : TeamData) =>instance.put('/match', teamData),
+    addMatch: (matchData : MatchRequestData) => instance.post('/match', matchData),
+    editMatch: (matchData : MatchRequestData) =>instance.put('/match', matchData),
     deleteMatch: (id: number) => instance.delete(`/match/${id}`),
 };
 
