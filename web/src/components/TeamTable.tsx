@@ -3,6 +3,7 @@ import { TeamData } from "../interfaces/TeamData"
 import { IconButton } from "@mui/material"
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { useNavigate } from "react-router-dom";
 import api from "../services/api"
 
 const TableStyled = styled.table`
@@ -40,6 +41,14 @@ interface TeamTableProps {
 
 export default function TeamTable(props : TeamTableProps) {
 
+    const navigate = useNavigate();
+
+    const handleEditTeam = async (e: React.FormEvent, teamId: number) => {
+        e.preventDefault();
+
+        navigate(`/team/edit/${teamId}`)
+    };
+
     const handleDeleteTeam = async (e: React.FormEvent, teamId: number) => {
         e.preventDefault();
 
@@ -72,7 +81,7 @@ export default function TeamTable(props : TeamTableProps) {
                         <TdStyled>{team.name}</TdStyled>
                         <TdStyled>{team.state}</TdStyled>
                         <TdStyled>
-                            <IconButton>
+                            <IconButton onClick={(e: React.FormEvent) => handleEditTeam(e, team.id!)}>
                                 <EditIcon />
                             </IconButton>
                             <IconButton onClick={(e: React.FormEvent) => handleDeleteTeam(e, team.id!)}>
